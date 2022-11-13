@@ -291,8 +291,8 @@ const NewAppPage = () => {
                   onChange={(e: any) => setTypeRule(e.target.value)}
                   required
                 >
-                  <MenuItem value={"AMOUNT_OF_TRANSACTIONS"}>
-                    Amount of Transactions
+                  <MenuItem value={"SPEND_LIMIT"}>
+                    Spend Limit
                   </MenuItem>
                   <MenuItem value={"TOKEN_OWNERSHIP"}>Token Ownership</MenuItem>
                   <MenuItem value={"ALLOW_LIST"}>Allowlist</MenuItem>
@@ -351,7 +351,7 @@ const NewAppPage = () => {
               ) : (
                 <Typography></Typography>
               )}
-              {typeRule === "AMOUNT_OF_TRANSACTIONS" ? (
+              {typeRule === "SPEND_LIMIT" ? (
                 <>
                   <TextField
                     autoComplete="off"
@@ -372,8 +372,8 @@ const NewAppPage = () => {
                 onClick={() => {
                   setRules([
                     {
-                      description: "Token Ownership",
-                      type: "Token Ownership",
+                      description: "Daily limit",
+                      type: "Spend Limit",
                       amount: 1,
                       timebox: "Per Day"
                     }
@@ -446,8 +446,8 @@ const NewAppPage = () => {
                   id="demo-simple-select"
                   label="Blockchain"
                 >
-                  <MenuItem value={"AMOUNT_OF_TRANSACTIONS"}>
-                    Amount of Transactions
+                  <MenuItem value={"SPEND_LIMIT"}>
+                    Spend limit
                   </MenuItem>
                 </Select> */}
             </Stack>
