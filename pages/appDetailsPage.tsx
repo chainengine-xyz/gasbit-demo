@@ -346,9 +346,25 @@ const NewAppPage = () => {
                     size="small"
                     helperText="(optional) The minimum amount of tokens a user should own to execute a transaction."
                   />
+
                 </>
               ) : (
-                <Typography>Not implemented</Typography>
+                <Typography></Typography>
+              )}
+              {typeRule === "AMOUNT_OF_TRANSACTIONS" ? (
+                <>
+                  <TextField
+                    autoComplete="off"
+                    id="outlined-basic"
+                    label="Amount"
+                    variant="outlined"
+                    size="small"
+                    helperText="Set your max limit value"
+                    required
+                  />
+                </>
+              ) : (
+                <Typography></Typography>
               )}
             </Stack>
             <Box display="flex" justifyContent="end" pt={6}>
