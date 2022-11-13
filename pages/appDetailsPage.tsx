@@ -317,9 +317,7 @@ const NewAppPage = () => {
               fontWeight={300}
               fontStyle="italic"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              eu nunc erat. Pellentesque vitae leo elementum, finibus metus
-              eget, finibus eros. Nam eu mattis ex, ut sagittis turpis.
+              Rules allows you to set spend limits. You can add as many rules as you want. All rules are combined using AND operator.
             </Box>
           </Box>
         </Box>
@@ -401,9 +399,8 @@ const NewAppPage = () => {
               fontWeight={300}
               fontStyle="italic"
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              eu nunc erat. Pellentesque vitae leo elementum, finibus metus
-              eget, finibus eros. Nam eu mattis ex, ut sagittis turpis.
+              Add smart contracts that you need to subsidize gas cost.
+              ABI of the contract is required to be able to communite with the contract.
             </Box>
           </Box>
         </Box>
