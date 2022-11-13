@@ -7,6 +7,8 @@ import {
   MenuItem,
   Select,
   TextField,
+  FormHelperText,
+  Typography
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import Link from "next/link";
@@ -21,6 +23,8 @@ const NewAppPage = () => {
   const [isContractModalVisible, setIsContractModalVisible] = useState(false);
   const [contracts, setContracts] = useState<any>([]);
   const [rules, setRules] = useState<any>([]);
+
+  const [typeRule, setTypeRule] = useState(null);
 
   return (
     <>
@@ -50,7 +54,7 @@ const NewAppPage = () => {
                     fontWeight: "400",
                     padding: "8px",
                     fontSize: "14px",
-                    borderRadius: "20px",
+                    borderRadius: "20px"
                   }}
                 >
                   Mumbai
@@ -143,7 +147,7 @@ const NewAppPage = () => {
                               color: "red",
                               height: 20,
                               width: 20,
-                              cursor: "pointer",
+                              cursor: "pointer"
                             }}
                           />
                         </Box>
@@ -237,7 +241,7 @@ const NewAppPage = () => {
                               color: "red",
                               height: 20,
                               width: 20,
-                              cursor: "pointer",
+                              cursor: "pointer"
                             }}
                           />
                         </Box>
@@ -272,32 +276,91 @@ const NewAppPage = () => {
                 label="Description"
                 variant="outlined"
                 size="small"
+                helperText="Give a meaninful description to your rule."
+                required
               />
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">
-                  Type of Rule
+                  Type of Rule *
                 </InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   label="Blockchain"
+                  value={typeRule}
+                  onChange={(e: any) => setTypeRule(e.target.value)}
+                  required
                 >
                   <MenuItem value={"AMOUNT_OF_TRANSACTIONS"}>
                     Amount of Transactions
                   </MenuItem>
+                  <MenuItem value={"TOKEN_OWNERSHIP"}>Token Ownership</MenuItem>
+                  <MenuItem value={"ALLOW_LIST"}>Allowlist</MenuItem>
+                  <MenuItem value={"DENY_LIST"}>Denylist</MenuItem>
+                  <MenuItem value={"MAX_GWEI_PER_TRANSACTION"}>
+                    Max gwei per transaction
+                  </MenuItem>
                 </Select>
+                <FormHelperText>
+                  Select the type of rule to see the specific fields
+                </FormHelperText>
               </FormControl>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Timebox *</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Timebox"
+                  required
+                >
+                  <MenuItem value={"DAY"}>Per Day</MenuItem>
+                  <MenuItem value={"WEEK"}>Per Week</MenuItem>
+                  <MenuItem value={"MONTH"}>Per Month</MenuItem>
+                </Select>
+                <FormHelperText>Select the Timebox of rule</FormHelperText>
+              </FormControl>
+              {typeRule === "TOKEN_OWNERSHIP" ? (
+                <>
+                  <TextField
+                    autoComplete="off"
+                    id="outlined-basic"
+                    label="Token Address"
+                    variant="outlined"
+                    size="small"
+                    helperText="The address of the smart contract that defintes the NFT"
+                    required
+                  />
+                  <TextField
+                    autoComplete="off"
+                    id="outlined-basic"
+                    label="Token Id"
+                    variant="outlined"
+                    helperText="The id of the NFT wiwthin the contract."
+                    size="small"
+                  />
+                  <TextField
+                    autoComplete="off"
+                    id="outlined-basic"
+                    label="Minimium ammount"
+                    variant="outlined"
+                    size="small"
+                    helperText="(optional) The minimum amount of tokens a user should own to execute a transaction."
+                  />
+                </>
+              ) : (
+                <Typography>Not implemented</Typography>
+              )}
             </Stack>
             <Box display="flex" justifyContent="end" pt={6}>
               <Button
                 onClick={() => {
                   setRules([
                     {
-                      description: "Limits of transactions",
-                      type: "Amount of transactions",
-                      amount: 200,
-                      timebox: "Per Day",
-                    },
+                      description: "Token Ownership",
+                      type: "Token Ownership",
+                      amount: 1,
+                      timebox: "Per Day"
+                    }
                   ]);
                   setIsRulesModalVisible(false);
                 }}
@@ -378,8 +441,8 @@ const NewAppPage = () => {
                   setContracts([
                     {
                       name: "Capture the Flag",
-                      address: "0x92322F44698605909c69900F2Cdb194d278702Ea",
-                    },
+                      address: "0x92322F44698605909c69900F2Cdb194d278702Ea"
+                    }
                   ]);
                   setIsContractModalVisible(false);
                 }}
@@ -400,8 +463,7 @@ const NewAppPage = () => {
               fontStyle="italic"
             >
               Add smart contracts that you need to subsidize gas cost.
-              ABI of the contract is required to be able to communite with the contract.
-            </Box>
+              ABI of the contract is required to be able to communite with the contract.            </Box>
           </Box>
         </Box>
       </Dialog>
